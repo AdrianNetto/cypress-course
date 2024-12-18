@@ -37,7 +37,7 @@ describe ('Central de atendimento ao Cliente TAT', function() {
   it('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', function() {
     cy.get('input[id="firstName"]').type('John').should('have.value', 'John');
     cy.get('input[id="lastName"]').type('Doe').should('have.value', 'Doe');
-    cy.get('input[id="email"]').type('johndoegmail.com').should('have.value', 'johndoegmail.com');
+    cy.get('input[id="email"]').type('johndoe@gmail.com').should('have.value', 'johndoe@gmail.com');
     cy.get('textarea[id="open-text-area"]').type('Ótimo atendimento').should('have.value', 'Ótimo atendimento');
     cy.get('input[id="phone-checkbox"]').check();
     cy.contains('Enviar').click();
@@ -53,5 +53,9 @@ describe ('Central de atendimento ao Cliente TAT', function() {
     cy.contains('Enviar').click();
     cy.get('span.error').should('be.visible');
     cy.get('span.error strong').should('contain', 'Valide os campos obrigatórios!');
-  })
+  });
+
+  it ('envia o formuário com sucesso usando um comando customizado', function() {
+    cy.fillMandatoryFieldsAndSubmit();
+  });
 });
