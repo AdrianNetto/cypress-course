@@ -127,6 +127,18 @@ describe ('Central de atendimento ao Cliente TAT', function() {
   });
 
   it('find the cat', function() {
-    cy.get('span[id="cat"]').should('be.visible');
+    cy.get('#cat').invoke('show').should('be.visible');
+  });
+
+  it('preenche a area de texto usando o comando invoke', function() {
+    cy.get('textarea[id="open-text-area"]').invoke('val', 'Usando o invoke para simular um ctrl + V').should('have.value', 'Usando o invoke para simular um ctrl + V');
+  });
+
+  it.only('faz uma requisição HTTP', function() {
+    cy.request('https://cac-tat.s3.eu-central-1.amazonaws.com/index.html').should((response) => {
+      expect(response.status).to.eq(200);
+      expect(response.statusText).to.eq('OK');
+      expect(response.body).to.include('CAC TAT');
+    });
   });
 });
