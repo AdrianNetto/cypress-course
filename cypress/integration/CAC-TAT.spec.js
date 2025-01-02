@@ -113,4 +113,8 @@ describe ('Central de atendimento ao Cliente TAT', function() {
     cy.get('a').invoke('removeAttr', 'target').click();
     cy.contains('Talking About Testing').should('be.visible');
   });
+
+  it('find the cat', function() {
+    cy.get('span[id="cat"]').should('be.visible');
+  });
 });
