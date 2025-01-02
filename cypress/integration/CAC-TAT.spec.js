@@ -58,4 +58,16 @@ describe ('Central de atendimento ao Cliente TAT', function() {
   it ('envia o formuário com sucesso usando um comando customizado', function() {
     cy.fillMandatoryFieldsAndSubmit();
   });
+
+  it('seleciona um produto (YouTube) por seu texto', function() {
+    cy.get('select').select('YouTube').should('have.value', 'youtube');
+  });
+
+  it('seleciona um produto (Mentoria) por seu valor (value)', function() {
+    cy.get('select').select('mentoria').should('have.value', 'mentoria');
+  });
+
+  it('seleciona um produto (Blog) por seu índice', function () {
+    cy.get('select').select(1).should('have.value', 'blog');
+  });
 });
