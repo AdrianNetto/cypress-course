@@ -98,10 +98,19 @@ describe ('Central de atendimento ao Cliente TAT', function() {
     });
   });
 
-  it.only('seleciona um arquivo utilizando uma fixture para a qual foi dada um alias', function() {
+  it('seleciona um arquivo utilizando uma fixture para a qual foi dada um alias', function() {
     cy.fixture('example').as('sampleFile');
     cy.get('input[type="file"]').selectFile('@sampleFile').should(($input) => {
       expect($input[0].files[0].name).to.eq('example');
     });
-  })
+  });
+
+  it('verifica que a política de privacidade abre em outra aba sem a necessidade de um clique', function() {
+    cy.get('a').should('have.attr', 'target', '_blank');
+  });
+
+  it('acessa a página da política de privacidade removendo o target e então clicando no link', function() {
+    cy.get('a').invoke('removeAttr', 'target').click();
+    cy.contains('Talking About Testing').should('be.visible');
+  });
 });
