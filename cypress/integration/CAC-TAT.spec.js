@@ -134,7 +134,7 @@ describe ('Central de atendimento ao Cliente TAT', function() {
     cy.get('textarea[id="open-text-area"]').invoke('val', 'Usando o invoke para simular um ctrl + V').should('have.value', 'Usando o invoke para simular um ctrl + V');
   });
 
-  it.only('faz uma requisição HTTP', function() {
+  it('faz uma requisição HTTP', function() {
     cy.request('https://cac-tat.s3.eu-central-1.amazonaws.com/index.html').should((response) => {
       expect(response.status).to.eq(200);
       expect(response.statusText).to.eq('OK');
